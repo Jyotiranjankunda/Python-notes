@@ -1,6 +1,5 @@
 import random
 import string
-
 def random_string(length):
     characters = string.ascii_letters
     random_str = ''.join(random.choices(characters, k=3))
