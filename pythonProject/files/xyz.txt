@@ -1,0 +1,2 @@
+Hello world, this is file 2 This is appended text 
+File is written using with block
