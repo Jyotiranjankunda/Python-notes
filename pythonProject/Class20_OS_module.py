@@ -83,3 +83,13 @@ print(os.getcwd())
 for folder in folders:
     print(folder)
     print(os.listdir(f"newdir/{folder}"))  # Print the data of all the folders of newdir folder
+
+# Assignment - in the files folder, change the names of all png files to 1.png, 2.png and so on..
+allFiles = os.listdir("files")
+
+i = 1
+for file in allFiles:
+    if(file.endswith(".png")):
+        os.rename(f"files/{file}", f"files/{i}.png")
+        print(file)
+        i += 1

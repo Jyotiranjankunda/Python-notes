@@ -52,13 +52,13 @@ c1.func2()
 class Mother:
     mothername = ""
 
-    def mother(self):
+    def printName(self):
         print("Mother name is :", self.mothername)
 
 class Father:
     fathername = ""
 
-    def father(self):
+    def printName(self):
         print("Father name is :", self.fathername)
 
 class Child(Mother, Father):
@@ -70,10 +70,23 @@ ch.mothername = "XYZ"
 ch.fathername = "ABC"
 ch.print_child_name()
 
+ch.printName()
+# This function is common in both Mother and Father classes, so which one will it call. It will call in the order that comes first in inheritance.
+# Here, class Child(Mother, Father), so in inheritance, Mother is written first, so printName function of Mother class will be called, not Father.
+
+# It's important to note that, in case of multiple inheritance, Python follows a method resolution order (MRO) to resolve conflicts between methods or attributes from different parent classes. The MRO determines the order in which parent classes are searched for attributes and methods.
+
+print(Child.mro())
+# o/p: [<class '__main__.Child'>, <class '__main__.Mother'>, <class '__main__.Father'>, <class 'object'>]
+# First searched in Child, if not found then Mother, then Father, and then Object
+
 # 3. Multilevel inheritance
 class Grandfather:
     def __init__(self, grandfathername):
         self.grandfathername = grandfathername
+
+    def print_name(self):
+        print(f"Grandfather name : {self.grandfathername}")
 
 class Father(Grandfather):
     def __init__(self, fathername, grandfathername):
@@ -86,17 +99,24 @@ class Father(Grandfather):
         # Since, here we are not using class name directly, instead using super keyword, so no need to write self
         # super() method is more preferable in python
 
+    def print_name(self):
+        super().print_name()
+        print(f"Father name : {self.fathername}")
+
 class Son(Father):
     def __init__(self, sonname, fathername, grandfathername):
         self.sonname = sonname
         super().__init__(fathername, grandfathername)
 
     def print_name(self):
-        print(f"Grandfather name : {self.grandfathername}")
-        print(f"Father name : {self.fathername}")
+        super().print_name()
         print(f"Son name : {self.sonname}")
 
 s1 = Son("Raju", "Rampal", "Lal mani")
+print(s1.mro())
+
+# In this call, print_name function of Grandfather is overriden by Father, and then again by son. First son's print_name function will be called, then it will call Father's print_name func., then it will call Grandfather's print_name function. After Grandfather's func executed, then control goes back to father's function, after than son's func.
+
 s1.print_name()
 
 # Hierarchical inheritance : When more than one derived class are created from a single base this type of inheritance is called hierarchical inheritance.
