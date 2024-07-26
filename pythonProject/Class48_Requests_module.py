@@ -23,6 +23,7 @@ headers = {
 post_response = requests.post(url, headers=headers, json=data)
 print(post_response.text)
 
+
 # bs4 Module
 # There is another module called BeautifulSoup which is used for web scraping in Python
 

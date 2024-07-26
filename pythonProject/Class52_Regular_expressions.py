@@ -34,5 +34,5 @@ matches = re.findall(pattern, text)
 print(matches)
 
 # Difference between finditer and findall
-# finditer Returns an iterator yielding match objects, while findall Returns a list of all non-overlapping matches in the string.
+# finditer Returns an iterator yielding match objects, while findall Returns a list of all non-overlapping matches in the string.,
 
